@@ -58,6 +58,12 @@ vows.describe('FitbitStrategy').addBatch({
         assert.equal(profile.id, '22B7NF');
         assert.equal(profile.displayName, 'Jared H.');
       },
+      'should set raw property' : function(err, profile) {
+        assert.isString(profile._raw);
+      },
+      'should set json property' : function(err, profile) {
+        assert.isObject(profile._json);
+      },
     },
   },
   
