@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var util = require('util');
-var FitbitStrategy = require('passport-fitbit/strategy');
+var FitbitStrategy = require('../lib/strategy');
 
 
 vows.describe('FitbitStrategy').addBatch({
