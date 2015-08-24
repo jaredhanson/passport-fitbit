@@ -7,9 +7,6 @@ var fitbit = require('..');
 vows.describe('passport-fitbit').addBatch({
   
   'module': {
-    'should report a version': function (x) {
-      assert.isString(fitbit.version);
-    },
   },
   
 }).export(module);
