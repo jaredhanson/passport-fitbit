@@ -1,6 +1,6 @@
 {
   "name": "passport-fitbit",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Fitbit authentication strategy for Passport.",
   "keywords": ["passport", "fitbit", "auth", "authn", "authentication", "identity"],
   "repository": {
