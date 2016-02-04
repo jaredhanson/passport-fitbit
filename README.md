@@ -1,4 +1,10 @@
-# Passport-Fitbit
+# passport-fitbit
+
+[![Build](https://img.shields.io/travis/jaredhanson/passport-fitbit.svg)](https://travis-ci.org/jaredhanson/passport-fitbit)
+[![Coverage](https://img.shields.io/coveralls/jaredhanson/passport-fitbit.svg)](https://coveralls.io/r/jaredhanson/passport-fitbit)
+[![Quality](https://img.shields.io/codeclimate/github/jaredhanson/passport-fitbit.svg?label=quality)](https://codeclimate.com/github/jaredhanson/passport-fitbit)
+[![Dependencies](https://img.shields.io/david/jaredhanson/passport-fitbit.svg)](https://david-dm.org/jaredhanson/passport-fitbit)
+
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
 with [Fitbit](http://www.fitbit.com/) using the OAuth 1.0a API.
