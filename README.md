@@ -1,3 +1,9 @@
+**DEPRECATED:** Fitbit's support for OAuth 1.0a is [deprecated](https://community.fitbit.com/t5/Web-API/OAuth-2-0-is-official-OAuth-1-0a-is-deprecated/m-p/983800)
+and will no longer function as of April 12, 2016.  You are encouraged to migrate
+to OAuth 2.0 and [passport-fitbit-oauth2](https://github.com/thegameofcode/passport-fitbit-oauth2)
+as soon as possible.
+
+
 # passport-fitbit
 
 [![Build](https://img.shields.io/travis/jaredhanson/passport-fitbit.svg)](https://travis-ci.org/jaredhanson/passport-fitbit)
