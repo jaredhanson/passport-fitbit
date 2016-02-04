@@ -21,21 +21,33 @@ unobtrusively integrated into any application or framework that supports
 
 ## Usage
 
+#### Create an Application
+
+Before using `passport-fitbit`, you must register an application with Fitbit.
+If you have not already done so, a new application can be created at
+[Fitbit Developers](https://dev.fitbit.com/).  Your application will be issued a
+consumer key and consumer secret, which need to be provided to the strategy.
+You will also need to configure a callback URL which matches the route in your
+application.
+
 #### Configure Strategy
 
 The Fitbit authentication strategy authenticates users using a Fitbit account
-and OAuth tokens.  The strategy requires a `verify` callback, which accepts
-these credentials and calls `done` providing a user, as well as `options`
-specifying a consumer key, consumer secret, and callback URL.
+and OAuth tokens.  The consumer key and consumer secret obtained when creating
+an application are supplied as options when creating the strategy.  The strategy
+also requires a `verify` callback, which receives the access token and
+corresponding secret as arguments, as well as `profile` which contains the
+authenticated user's Fitbit profile.   The `verify` callback must call `cb`
+providing a user to complete authentication.
 
     passport.use(new FitbitStrategy({
         consumerKey: FITBIT_CONSUMER_KEY,
         consumerSecret: FITBIT_CONSUMER_SECRET,
         callbackURL: "http://127.0.0.1:3000/auth/fitbit/callback"
       },
-      function(token, tokenSecret, profile, done) {
+      function(token, tokenSecret, profile, cb) {
         User.findOrCreate({ fitbitId: profile.id }, function (err, user) {
-          return done(err, user);
+          return cb(err, user);
         });
       }
     ));
@@ -60,21 +72,51 @@ application:
 
 ## Examples
 
-For a complete, working example, refer to the [login example](https://github.com/jaredhanson/passport-fitbit/tree/master/examples/login).
+Developers using the popular [Express](http://expressjs.com/) web framework can
+refer to an [example](https://github.com/passport/express-4.x-twitter-example)
+as a starting point for their own web applications.  The example shows how to
+authenticate users using Twitter.  However, because both Twitter and Fitbit
+use OAuth 1.0, the code is similar.  Simply replace references to Twitter with
+corresponding references to Fitbit.
 
-## Tests
+## Contributing
 
-    $ npm install --dev
-    $ make test
+#### Tests
 
-[![Build Status](https://secure.travis-ci.org/jaredhanson/passport-fitbit.png)](http://travis-ci.org/jaredhanson/passport-fitbit)
+The test suite is located in the `test/` directory.  All new features are
+expected to have corresponding test cases.  Ensure that the complete test suite
+passes by executing:
 
-## Credits
+```bash
+$ make test
+```
 
-  - [Jared Hanson](http://github.com/jaredhanson)
+#### Coverage
+
+All new feature development is expected to have test coverage.  Patches that
+increse test coverage are happily accepted.  Coverage reports can be viewed by
+executing:
+
+```bash
+$ make test-cov
+$ make view-cov
+```
+
+## Support
+
+#### Funding
+
+This software is provided to you as open source, free of charge.  The time and
+effort to develop and maintain this project is dedicated by [@jaredhanson](https://github.com/jaredhanson).
+If you (or your employer) benefit from this project, please consider a financial
+contribution.  Your contribution helps continue the efforts that produce this
+and other open source software.
+
+Funds are accepted via [PayPal](https://paypal.me/jaredhanson), [Venmo](https://venmo.com/jaredhanson),
+and [other](http://jaredhanson.net/pay) methods.  Any amount is appreciated.
 
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2011-2013 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
+Copyright (c) 2011-2016 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
