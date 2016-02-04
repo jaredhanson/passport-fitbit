@@ -23,6 +23,36 @@ describe('Strategy', function() {
     });
   })
   
+  describe('authorization request', function() {
+    var strategy = new FitBitStrategy({
+        consumerKey: 'ABC123',
+        consumerSecret: 'secret'
+      }, function(){});
+    
+    strategy._oauth.getOAuthRequestToken = function(extraParams, callback) {
+      callback(null, 'hh5s93j4hdidpola', 'hdhd0244k9j7ao03', {});
+    }
+    
+    
+    var url;
+  
+    before(function(done) {
+      chai.passport.use(strategy)
+        .redirect(function(u) {
+          url = u;
+          done();
+        })
+        .req(function(req) {
+          req.session = {};
+        })
+        .authenticate();
+    });
+  
+    it('should be redirected', function() {
+      expect(url).to.equal('https://www.fitbit.com/oauth/authorize?oauth_token=hh5s93j4hdidpola');
+    });
+  });
+  
   describe('authorization request with parameters', function() {
     var strategy = new FitBitStrategy({
         consumerKey: 'ABC123',
@@ -80,7 +110,10 @@ describe('Strategy', function() {
   
     it('should error', function() {
       expect(err).to.be.an.instanceOf(Error);
+      expect(err.constructor.name).to.equal('APIError');
       expect(err.message).to.equal("Invalid signature: XXXXXXXXXXXXXXXXXXXXXXXXXXX=");
+      expect(err.type).to.equal('oauth');
+      expect(err.field).to.equal('oauth_signature');
     });
   });
   
@@ -150,7 +183,10 @@ describe('Strategy', function() {
   
     it('should error', function() {
       expect(err).to.be.an.instanceOf(Error);
+      expect(err.constructor.name).to.equal('APIError');
       expect(err.message).to.equal("Invalid signature or token 'XXXXXXXXXXXXXXXXXXXXXXXXXXX=' or token 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'");
+      expect(err.type).to.equal('oauth');
+      expect(err.field).to.equal('oauth_access_token');
     });
   });
   
