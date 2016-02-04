@@ -2,7 +2,19 @@
   "name": "passport-fitbit",
   "version": "1.0.0",
   "description": "Fitbit authentication strategy for Passport.",
-  "keywords": ["passport", "fitbit", "auth", "authn", "authentication", "identity"],
+  "keywords": [
+    "passport",
+    "fitbit",
+    "auth",
+    "authn",
+    "authentication",
+    "identity"
+  ],
+  "author": {
+    "name": "Jared Hanson",
+    "email": "jaredhanson@gmail.com",
+    "url": "http://www.jaredhanson.net/"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/jaredhanson/passport-fitbit.git"
@@ -10,24 +22,28 @@
   "bugs": {
     "url": "http://github.com/jaredhanson/passport-fitbit/issues"
   },
-  "author": {
-    "name": "Jared Hanson",
-    "email": "jaredhanson@gmail.com",
-    "url": "http://www.jaredhanson.net/"
-  },
-  "licenses": [ {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/MIT" 
-  } ],
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
   "main": "./lib",
   "dependencies": {
     "passport-oauth1": "1.x.x"
   },
   "devDependencies": {
+    "make-node": "0.3.x",
+    "mocha": "1.x.x",
+    "chai": "2.x.x",
+    "chai-passport-strategy": "1.x.x",
     "vows": "0.8.x"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
   },
   "scripts": {
     "test": "NODE_PATH=lib node_modules/.bin/vows test/*-test.js"
-  },
-  "engines": { "node": ">= 0.4.0" }
+  }
 }
